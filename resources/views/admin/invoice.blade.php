@@ -52,7 +52,7 @@
                             <a class="btn btn-success" href="{{ route('invoice.show',$item->id) }}" target="_blank"><span class="fas fa-eye"></span></a>
                             <a class="btn btn-warning" href="{{ route('show_proform',$item->id) }}" target="_blank"><span class="fas fa-eye"></span></a>
                             <a class="btn btn-primary" href="{{ route('invoice.edit',$item->id) }}"><span class="fas fa-edit"></span></a>
-                            <button class="btn btn-danger" onclick="#"><span class="fas fa-trash"></span></button>
+                            <button class="btn btn-danger" onclick="modaldelete({{ $item->id }})"><span class="fas fa-trash"></span></button>
                             {{-- <a class="btn btn-primary" href="{{ route('produk.edit',$item->id) }}"><span class="fas fa-edit"></span></a>
                             <button class="btn btn-danger" onclick="modaldelete({{ $item->id }})"><span class="fas fa-trash"></span></button> --}}
                         </td>
@@ -96,7 +96,7 @@
         <div class="modal-body">
           <p>Apakah anda yakin akan menghapus data ini&hellip;</p>
         </div>
-        <form action="{{ route('produk.destroy', ':id') }}" method="POST" class="delete-form">
+        <form action="{{ route('invoice.destroy', ':id') }}" method="POST" class="delete-form">
             @csrf
             @method('DELETE')
             <div class="modal-footer justify-content-between">

@@ -211,6 +211,17 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try{
+            Invoice::destroy($id);
+            Item::where("invoice_id",'=',$id)->delete();
+            DB::commit();
+            return redirect("admin/invoice")->with('status', "Sukses menghapus invoice");
+        }catch(\Exception $e){
+            DB::rollback();
+            dd($e);
+            $ea = "Terjadi Kesalahan saat menghapus invoice".$e->message;
+            return redirect("admin/invoice")->with('status', $ea);
+        }
     }
 }
