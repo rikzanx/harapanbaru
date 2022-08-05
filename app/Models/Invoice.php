@@ -20,6 +20,7 @@ class Invoice extends Model
             "comment",
             "diskon_rate",
             "tax_rate",
+            "profit",
             "created_at"
     ];
 

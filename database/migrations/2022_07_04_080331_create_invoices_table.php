@@ -24,6 +24,7 @@ class CreateInvoicesTable extends Migration
             $table->string("comment")->nullable();
             $table->integer("diskon_rate")->default(0);
             $table->integer("tax_rate")->default(0);
+            $table->integer("profit")->default(0);
             $table->timestamps();
         });
     }
