@@ -64,7 +64,7 @@ class InvoiceController extends Controller
         DB::beginTransaction();
         try {
             $invoice = new Invoice();
-            $now = Carbon::now();
+            $now = Carbon::parse($request->duedate);
             // dd($now->startOfMonth()->toDateTimeString());
             $latestInvoice = Invoice::where('created_at','>=',$now->startOfMonth()->toDateTimeString())->where('created_at','<=',$now->endOfMonth()->toDateTimeString())->orderBy('id','DESC')->first();
             if($latestInvoice === null){
@@ -72,6 +72,7 @@ class InvoiceController extends Controller
             }else{
                 $invoice->no_invoice = $now->year."/INV/".$now->isoformat('MM')."/".sprintf('%04d', ++$latestInvoice->id);
             }
+            $invoice->duedate = $request->duedate;
             $invoice->name_customer = $request->name_customer;
             $invoice->address_customer = $request->address_customer;
             $invoice->phone_customer = $request->phone_customer;
@@ -84,6 +85,7 @@ class InvoiceController extends Controller
             $invoice->save();
             for($i=0;$i<count($request->description);$i++){
                 $item = new Item();
+                $item->duedate = $request->duedate;
                 $item->invoice_id = $invoice->id;
                 $item->item_of = "pcs";
                 $item->description = $request->description[$i];
@@ -170,10 +172,18 @@ class InvoiceController extends Controller
             return redirect("admin/invoice")->with('status', $validator->errors()->first());
         }
         // dd($request->comment);
+
+        // foreach($invoices as $a){
+        //     Item::where('invoice_id', $a->id)
+        //     ->update([
+        //         'duedate' => $a->duedate
+        //         ]);
+        // }
         DB::beginTransaction();
         try {
             $invoice = Invoice::findOrFail($id);
             $invoice->name_customer = $request->name_customer;
+            $invoice->duedate = $request->duedate;
             $invoice->address_customer = $request->address_customer;
             $invoice->phone_customer = $request->phone_customer;
             $invoice->diskon_rate = $request->diskon_rate;
@@ -186,6 +196,7 @@ class InvoiceController extends Controller
             $delete = Item::where('invoice_id',$id)->delete();
             for($i=0;$i<count($request->description);$i++){
                 $item = new Item();
+                $item->duedate = $request->duedate;
                 $item->invoice_id = $invoice->id;
                 $item->item_of = "pcs";
                 $item->description = $request->description[$i];

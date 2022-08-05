@@ -33,5 +33,11 @@ class AppServiceProvider extends ServiceProvider
                 return "Rp. <?php echo number_format($expression,0,',','.'); ?>"; 
             }
         );
+        Blade::directive(
+            'rupiahonly', 
+            function ( $expression ) { 
+                return "<?php echo number_format($expression,0,',','.'); ?>"; 
+            }
+        );
     }
 }

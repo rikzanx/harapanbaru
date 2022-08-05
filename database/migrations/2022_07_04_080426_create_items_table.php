@@ -20,6 +20,7 @@ class CreateItemsTable extends Migration
             $table->string("description");
             $table->integer("qty");
             $table->integer("item_price");
+            $table->date("duedate")->nullable();
             $table->timestamps();
         });
     }

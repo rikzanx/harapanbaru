@@ -47,7 +47,7 @@
                         <td>{{ $loop->index+1 }}</td>
                         <td>{{ $item->no_invoice }}</td>
                         <td>{{ $item->name_customer }}</td>
-                        <td>{{ $item->created_at }}</td>
+                        <td>{{ $item->duedate }}</td>
                         <td>
                             <a class="btn btn-success" href="{{ route('invoice.show',$item->id) }}" target="_blank"><span class="fas fa-eye"></span></a>
                             <a class="btn btn-warning" href="{{ route('show_proform',$item->id) }}" target="_blank"><span class="fas fa-eye"></span></a>

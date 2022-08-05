@@ -37,6 +37,10 @@
                 @method("PATCH")
                 <div class="card-body">
                   <div class="form-group">
+                    <label for="exampleInputEmail1">Tanggal</label>
+                    <input type="date" name="duedate" class="form-control" id="exampleInputEmail1" value="{{ \Carbon\Carbon::parse($invoice->duedate)->format("Y-m-d") }}">
+                  </div>
+                  <div class="form-group">
                     <label for="exampleInputEmail1">Nama Customer</label>
                     <input type="text" value="{{ $invoice->name_customer }}" name="name_customer" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
                   </div>
