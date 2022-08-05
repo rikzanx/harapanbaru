@@ -88,6 +88,10 @@
                     <label for="exampleInputEmail1">Pajak (%)</label>
                     <input type="number" value="{{ $invoice->tax_rate }}" name="tax_rate" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
                   </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Profit</label>
+                    <input type="number" value="{{ $invoice->profit }}" name="tax_rate" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
+                  </div>
                 </div>
                 <!-- /.card-body -->
 
