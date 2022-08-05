@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\PasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::resource('produk',ProductController::class);
     Route::resource('invoice',InvoiceController::class);
     Route::resource('item',ItemController::class);
+    Route::resource('password',PasswordController::class);
 
     Route::get('proforma/invoice/{id}',[InvoiceController::class, 'show_proform'])->name("show_proform");
 });
