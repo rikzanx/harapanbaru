@@ -85,15 +85,15 @@ class PasswordController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect()->("password.index")->with('status', $validator->errors()->first());
+            return redirect()->route("password.index")->with('status', $validator->errors()->first());
         }
         $user = User::findOrFail($id);
         $user->password = bcrypt($request->password);
 
         if($user->save()){
-            return redirect()->("password.index")->with('status', "Sukses merubah perusahaan");
+            return redirect()->route("password.index")->with('status', "Sukses merubah perusahaan");
         }else {
-            return redirect()->("password.index")->with('status', "Terjadi Kesalahan");
+            return redirect()->route("password.index")->with('status', "Terjadi Kesalahan");
         }
     }
 

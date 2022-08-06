@@ -64,7 +64,7 @@ class ProductController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect()->("produk.index")->with('status', $validator->errors()->first());
+            return redirect()->route("produk.index")->with('status', $validator->errors()->first());
         }
         DB::beginTransaction();
         try {
@@ -96,11 +96,11 @@ class ProductController extends Controller
             }
             //commit
             DB::commit();
-            return redirect()->("produk.index")->with('status', "Sukses menambhakan produk");
+            return redirect()->route("produk.index")->with('status', "Sukses menambhakan produk");
         } catch (\Exception $e) {
             DB::rollback();
             $ea = "Terjadi Kesalahan saat menambahkan kategori".$e->message;
-            return redirect()->("produk.index")->with('status', $ea);
+            return redirect()->route("produk.index")->with('status', $ea);
         }
     }
 
@@ -153,7 +153,7 @@ class ProductController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect()->("produk.index")->with('status', $validator->errors()->first());
+            return redirect()->route("produk.index")->with('status', $validator->errors()->first());
         }
         DB::beginTransaction();
         try {
@@ -186,11 +186,11 @@ class ProductController extends Controller
             }
             //commit
             DB::commit();
-            return redirect()->("produk.index")->with('status', "Sukses merubah produk");
+            return redirect()->route("produk.index")->with('status', "Sukses merubah produk");
         } catch (\Exception $e) {
             DB::rollback();
             $ea = "Terjadi Kesalahan saat merubah produk".$e->message;
-            return redirect()->("produk.index")->with('status', $ea);
+            return redirect()->route("produk.index")->with('status', $ea);
         }
     }
 
@@ -207,12 +207,12 @@ class ProductController extends Controller
             Product::destroy($id);
             $delete = ImagesProduct::where('product_id',$id)->delete();
             DB::commit();
-            return redirect()->("produk.index")->with('status', "Sukses menghapus product");
+            return redirect()->route("produk.index")->with('status', "Sukses menghapus product");
 
         }catch (\Exception $e) {
             DB::rollback();
             $ea = "Terjadi Kesalahan saat merubah produk".$e->message;
-            return redirect()->("produk.index")->with('status', $ea);
+            return redirect()->route("produk.index")->with('status', $ea);
         }
     }
 }
