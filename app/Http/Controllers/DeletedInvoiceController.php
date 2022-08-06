@@ -58,7 +58,7 @@ class DeletedInvoiceController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect("admin/invoice")->with('status', $validator->errors()->first());
+            return redirect()->route("invoice.index")->with('status', $validator->errors()->first());
         }
         // dd($request->comment);
         DB::beginTransaction();
@@ -69,10 +69,11 @@ class DeletedInvoiceController extends Controller
             $latestInvoice = DeletedInvoice::where('created_at','>=',$now->startOfMonth()->toDateTimeString())->where('created_at','<=',$now->endOfMonth()->toDateTimeString())->orderBy('id','DESC')->first();
             if($latestInvoice === null){
                 $invoice->no_invoice = $now->year."/INV/".$now->isoformat('MM')."/0001";
+                $invoice->id_inv = 1;
             }else{
                 $invoice->no_invoice = $now->year."/INV/".$now->isoformat('MM')."/".sprintf('%04d', $latestInvoice->id_inv+1);
+                $invoice->id_inv = $latestInvoice->id_inv+1;
             }
-            $invoice->id_inv = $latestInvoice->id_inv+1;
             $invoice->duedate = $request->duedate;
             $invoice->name_customer = $request->name_customer;
             $invoice->address_customer = $request->address_customer;
@@ -95,12 +96,12 @@ class DeletedInvoiceController extends Controller
                 $item->save();
             }
             DB::commit();
-            return redirect("admin/invoice")->with('status', "Sukses menambahkan invoice");
+            return redirect()->route("invoice.index")->with('status', "Sukses menambahkan invoice");
         } catch (\Exception $e) {
             DB::rollback();
             dd($e);
             $ea = "Terjadi Kesalahan saat menambahkan invoice".$e->message;
-            return redirect("admin/invoice")->with('status', $ea);
+            return redirect()->route("invoice.index")->with('status', $ea);
         }
     }
 
@@ -170,7 +171,7 @@ class DeletedInvoiceController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect("admin/invoice")->with('status', $validator->errors()->first());
+            return redirect()->route("invoice.index")->with('status', $validator->errors()->first());
         }
         // dd($request->comment);
 
@@ -206,12 +207,12 @@ class DeletedInvoiceController extends Controller
                 $item->save();
             }
             DB::commit();
-            return redirect("admin/invoice")->with('status', "Sukses merubah invoice");
+            return redirect()->route("invoice.index")->with('status', "Sukses merubah invoice");
         } catch (\Exception $e) {
             DB::rollback();
             dd($e);
             $ea = "Terjadi Kesalahan saat merubah invoice".$e->message;
-            return redirect("admin/invoice")->with('status', $ea);
+            return redirect()->route("invoice.index")->with('status', $ea);
         }
     }
 
@@ -228,12 +229,12 @@ class DeletedInvoiceController extends Controller
             DeletedInvoice::destroy($id);
             DeletedItem::where("invoice_id",'=',$id)->delete();
             DB::commit();
-            return redirect("admin/invoice")->with('status', "Sukses menghapus invoice");
+            return redirect()->route("invoice.index")->with('status', "Sukses menghapus invoice");
         }catch(\Exception $e){
             DB::rollback();
             dd($e);
             $ea = "Terjadi Kesalahan saat menghapus invoice".$e->message;
-            return redirect("admin/invoice")->with('status', $ea);
+            return redirect()->route("invoice.index")->with('status', $ea);
         }
     }
 }

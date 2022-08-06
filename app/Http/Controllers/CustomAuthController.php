@@ -27,10 +27,10 @@ class CustomAuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             // dd($credentials);
-            return redirect()->intended('admin')
+            return redirect()->route('login.custom')
                         ->withSuccess('Signed in');
         }
-        return redirect("admin/login")->withSuccess('Login details are not valid');
+        return redirect()->route("admin.dashboard")->withSuccess('Login details are not valid');
     }
 
 
@@ -72,7 +72,7 @@ class CustomAuthController extends Controller
             return view('dashboard');
         }
   
-        return redirect("login")->withSuccess('You are not allowed to access');
+        return redirect()->route('login.custom')->withSuccess('You are not allowed to access');
     }
     
 
@@ -80,6 +80,6 @@ class CustomAuthController extends Controller
         Session::flush();
         Auth::logout();
   
-        return Redirect('admin/login');
+        return redirect()->route('login.custom');
     }
 }
