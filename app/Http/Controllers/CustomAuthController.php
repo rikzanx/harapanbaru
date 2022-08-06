@@ -28,9 +28,9 @@ class CustomAuthController extends Controller
         if (Auth::attempt($credentials)) {
             // dd($credentials);
             return redirect()->route('admin.dashboard')
-                        ->withSuccess('Signed in');
+                        ->with('status', 'Signed in');
         }
-        return redirect()->route("login")->withSuccess('Login details are not valid');
+        return redirect()->route("login")->with('danger','Login details are not valid');
     }
 
 
@@ -52,7 +52,7 @@ class CustomAuthController extends Controller
         $data = $request->all();
         $check = $this->create($data);
          
-        return redirect()->route("admin.dashboard")->withSuccess('You have signed-in');
+        return redirect()->route("admin.dashboard")->with('status', 'You have signed-in');
     }
 
 
@@ -72,7 +72,7 @@ class CustomAuthController extends Controller
             return view('dashboard');
         }
   
-        return redirect()->route('login')->withSuccess('You are not allowed to access');
+        return redirect()->route('login')->with('danger', 'You are not allowed to access');
     }
     
 
@@ -80,6 +80,6 @@ class CustomAuthController extends Controller
         Session::flush();
         Auth::logout();
   
-        return redirect()->route('login');
+        return redirect()->route('login')->with('danger', 'Success Logout');
     }
 }

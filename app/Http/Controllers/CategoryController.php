@@ -47,11 +47,11 @@ class CategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'image_category' => 'required|image:jpeg,png,jpg,gif,svg,jfif|max:2048'
+            'image_category' => 'required|image:jpeg,png,jpg,gif,svg,jfif'
         ]);
         
         if ($validator->fails()) {
-            return redirect()->route("kategori.index")->with('status', $validator->errors()->first());
+            return redirect()->route("kategori.index")->with('danger', $validator->errors()->first());
         }
         // dd($request->all());
         $uploadFolder = "img/category/";
@@ -67,7 +67,7 @@ class CategoryController extends Controller
         if($category){
             return redirect()->route("kategori.index")->with('status', "Sukses menambhakan kategori");
         }else{
-            return redirect()->route("kategori.index")->with('status', "Terjadi Kesalahan saat menambahkan kategori.");
+            return redirect()->route("kategori.index")->with('danger', "Terjadi Kesalahan saat menambahkan kategori.");
         }
     }
 
@@ -112,7 +112,7 @@ class CategoryController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect()->route("kategori.index")->with('status', $validator->errors()->first());
+            return redirect()->route("kategori.index")->with('danger', $validator->errors()->first());
         }
         $category = Category::findOrFail($id);
         $category->name = $request->name;
@@ -128,7 +128,7 @@ class CategoryController extends Controller
         if($category->save()){
             return redirect()->route("kategori.index")->with('status', "Sukses merubah kategori");
         }else {
-            return redirect()->route("kategori.index")->with('status', "Terjadi Kesalahan");
+            return redirect()->route("kategori.index")->with('danger', "Terjadi Kesalahan");
         }
     }
 
@@ -143,7 +143,7 @@ class CategoryController extends Controller
         if(Category::destroy($id)){
             return redirect()->route("kategori.index")->with('status', "Sukses menghapus kategori");
         }else {
-            return redirect()->route("kategori.index")->with('status', "Terjadi Kesalahan");
+            return redirect()->route("kategori.index")->with('danger', "Terjadi Kesalahan");
         }
     }
 }

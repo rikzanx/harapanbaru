@@ -212,6 +212,16 @@
       bsCustomFileInput.init();
     });
 </script>
+@if (session()->has('danger'))
+    <script>
+        $(document).Toasts('create', {
+            class: 'bg-danger',
+            title: 'Info',
+            subtitle: '',
+            body: '{{ session()->get("danger") }}'
+        })
+    </script>
+@endif
 @yield('js')
 </body>
 </html>

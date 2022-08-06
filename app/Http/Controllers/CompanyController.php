@@ -88,7 +88,7 @@ class CompanyController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect()->route("kategori.index")->with('status', $validator->errors()->first());
+            return redirect()->route("kategori.index")->with('danger', $validator->errors()->first());
         }
         $company = Company::findOrFail($id);
         $company->name = $request->name;
@@ -108,7 +108,7 @@ class CompanyController extends Controller
         if($company->save()){
             return redirect("admin/perusahaan")->with('status', "Sukses merubah perusahaan");
         }else {
-            return redirect("admin/perusahaan")->with('status', "Terjadi Kesalahan");
+            return redirect("admin/perusahaan")->with('danger', "Terjadi Kesalahan");
         }
     }
 

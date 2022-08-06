@@ -64,7 +64,7 @@ class ProductController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect()->route("produk.index")->with('status', $validator->errors()->first());
+            return redirect()->route("produk.index")->with('danger', $validator->errors()->first());
         }
         DB::beginTransaction();
         try {
@@ -100,7 +100,7 @@ class ProductController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             $ea = "Terjadi Kesalahan saat menambahkan kategori".$e->message;
-            return redirect()->route("produk.index")->with('status', $ea);
+            return redirect()->route("produk.index")->with('danger', $ea);
         }
     }
 
@@ -153,7 +153,7 @@ class ProductController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect()->route("produk.index")->with('status', $validator->errors()->first());
+            return redirect()->route("produk.index")->with('danger', $validator->errors()->first());
         }
         DB::beginTransaction();
         try {
@@ -190,7 +190,7 @@ class ProductController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             $ea = "Terjadi Kesalahan saat merubah produk".$e->message;
-            return redirect()->route("produk.index")->with('status', $ea);
+            return redirect()->route("produk.index")->with('danger', $ea);
         }
     }
 
@@ -212,7 +212,7 @@ class ProductController extends Controller
         }catch (\Exception $e) {
             DB::rollback();
             $ea = "Terjadi Kesalahan saat merubah produk".$e->message;
-            return redirect()->route("produk.index")->with('status', $ea);
+            return redirect()->route("produk.index")->with('danger', $ea);
         }
     }
 }

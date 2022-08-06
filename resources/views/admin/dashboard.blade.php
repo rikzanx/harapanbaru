@@ -202,7 +202,16 @@
 @endsection
 
 @section('js')
-<script>
-</script>
+@if (session()->has('status'))
+    <script>
+        $(document).Toasts('create', {
+            class: 'bg-info',
+            title: 'Info',
+            subtitle: '',
+            body: '{{ session()->get("status") }}'
+        })
+        console.log("status");
+    </script>
+@endif
     
 @endsection

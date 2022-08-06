@@ -58,7 +58,7 @@ class DeletedInvoiceController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect()->route("invoice.index")->with('status', $validator->errors()->first());
+            return redirect()->route("invoice.index")->with('danger', $validator->errors()->first());
         }
         // dd($request->comment);
         DB::beginTransaction();
@@ -101,7 +101,7 @@ class DeletedInvoiceController extends Controller
             DB::rollback();
             dd($e);
             $ea = "Terjadi Kesalahan saat menambahkan invoice".$e->message;
-            return redirect()->route("invoice.index")->with('status', $ea);
+            return redirect()->route("invoice.index")->with('danger', $ea);
         }
     }
 
@@ -171,7 +171,7 @@ class DeletedInvoiceController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect()->route("invoice.index")->with('status', $validator->errors()->first());
+            return redirect()->route("invoice.index")->with('danger', $validator->errors()->first());
         }
         // dd($request->comment);
 
@@ -212,7 +212,7 @@ class DeletedInvoiceController extends Controller
             DB::rollback();
             dd($e);
             $ea = "Terjadi Kesalahan saat merubah invoice".$e->message;
-            return redirect()->route("invoice.index")->with('status', $ea);
+            return redirect()->route("invoice.index")->with('danger', $ea);
         }
     }
 
@@ -234,7 +234,7 @@ class DeletedInvoiceController extends Controller
             DB::rollback();
             dd($e);
             $ea = "Terjadi Kesalahan saat menghapus invoice".$e->message;
-            return redirect()->route("invoice.index")->with('status', $ea);
+            return redirect()->route("invoice.index")->with('danger', $ea);
         }
     }
 }

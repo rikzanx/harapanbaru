@@ -50,7 +50,7 @@ class ImagesSliderController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect()->route("slider.index")->with('status', $validator->errors()->first());
+            return redirect()->route("slider.index")->with('danger', $validator->errors()->first());
         }
         // dd($request->all());
         $uploadFolder = "img/sliders/";
@@ -65,7 +65,7 @@ class ImagesSliderController extends Controller
         if($slider){
             return redirect()->route("slider.index")->with('status', "Sukses menambhakan slider");
         }else{
-            return redirect()->route("slider.index")->with('status', "Terjadi Kesalahan saat menambahkan kategori.");
+            return redirect()->route("slider.index")->with('danger', "Terjadi Kesalahan saat menambahkan kategori.");
         }
     }
 
@@ -110,7 +110,7 @@ class ImagesSliderController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect()->route("slider.index")->with('status', $validator->errors()->first());
+            return redirect()->route("slider.index")->with('danger', $validator->errors()->first());
         }
         $slider = ImagesSlider::findOrFail($id);
         $uploadFolder = "img/sliders/";
@@ -123,7 +123,7 @@ class ImagesSliderController extends Controller
         if($slider->save()){
             return redirect()->route("slider.index")->with('status', "Sukses merubah slider");
         }else {
-            return redirect()->route("slider.index")->with('status', "Terjadi Kesalahan");
+            return redirect()->route("slider.index")->with('danger', "Terjadi Kesalahan");
         }
     }
 
@@ -138,7 +138,7 @@ class ImagesSliderController extends Controller
         if(ImagesSlider::destroy($id)){
             return redirect()->route("slider.index")->with('status', "Sukses menghapus slider");
         }else {
-            return redirect()->route("slider.index")->with('status', "Terjadi Kesalahan");
+            return redirect()->route("slider.index")->with('danger', "Terjadi Kesalahan");
         }
 
     }

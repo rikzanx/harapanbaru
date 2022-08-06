@@ -70,5 +70,26 @@
 <script src="{{  asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{  asset('dist/js/adminlte.min.js') }}"></script>
+@if (session()->has('status'))
+    <script>
+        $(document).Toasts('create', {
+            class: 'bg-info',
+            title: 'Info',
+            subtitle: '',
+            body: '{{ session()->get("status") }}'
+        })
+    </script>
+@endif
+
+@if (session()->has('danger'))
+    <script>
+        $(document).Toasts('create', {
+            class: 'bg-danger',
+            title: 'Info',
+            subtitle: '',
+            body: '{{ session()->get("danger") }}'
+        })
+    </script>
+@endif
 </body>
 </html>
