@@ -85,6 +85,8 @@ class CompanyController extends Controller
             'address' => 'required|string|max:255',
             'telp' => 'required|string|max:255',
             'email' => 'required|string|max:255',
+            'lat' => 'required|string|max:255',
+            'lng' => 'required|string|max:255',
         ]);
         
         if ($validator->fails()) {
@@ -96,6 +98,8 @@ class CompanyController extends Controller
         $company->address = $request->address;
         $company->telp = $request->telp;
         $company->email = $request->email;
+        $company->lat = $request->lat;
+        $company->lng = $request->lng;
 
         if($request->hasFile('image_company')){
             $uploadFolder = "img/";

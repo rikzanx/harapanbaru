@@ -14,6 +14,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\DeletedInvoiceController;
 use App\Http\Controllers\DeletedItemController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\PenawaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::resource('deletedinvoice',DeletedInvoiceController::class);
     Route::resource('deleteditem',DeletedItemController::class);
     Route::resource('password',PasswordController::class);
+    Route::resource('penawaran',PenawaranController::class);
 
     Route::get('proforma/invoice/{id}',[InvoiceController::class, 'show_proform'])->name("show_proform");
 });

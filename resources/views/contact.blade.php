@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <title>CV Tunggal Jaya - Contact</title>
+    <title>{{ $company->name }} - Contact</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="{{ asset('img/apple-icon-2.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon-2.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset($company->image_company) }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset($company->image_company) }}">
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/templatemo.css') }}">
@@ -67,7 +67,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="{{ route('product') }}">Produk</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">Kontak</a>
+                            <a class="nav-link active" href="{{ route('contact') }}">Kontak</a>
                         </li>
                     </ul>
                 </div>
@@ -105,18 +105,21 @@ https://templatemo.com/tm-559-zay-shop
     <div id="mapid" style="width: 100%; height: 300px;"></div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script>
-        var mymap = L.map('mapid').setView([-7.2367248, 112.7422357, 13], 13);
+        var lat = @json($company->lat);
+        var lng = @json($company->lng);
+        var mymap = L.map('mapid').setView([lat, lng, 13], 13);
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 13,
             attribution: '{{ $company->name }}',
+            description: "ok",
             id: 'mapbox/streets-v11',
             tileSize: 512,
             zoomOffset: -1
         }).addTo(mymap);
 
-        L.marker([-7.2367248, 112.7422357, 13]).addTo(mymap)
-            .bindPopup("{{ $company->name }}").openPopup();
+        L.marker([lat, lng]).addTo(mymap)
+            .bindPopup("{{ $company->name }} <br> <h6>{{ $company->address }}</h6>").openPopup();
 
         mymap.scrollWheelZoom.disable();
         mymap.touchZoom.disable();
@@ -126,7 +129,25 @@ https://templatemo.com/tm-559-zay-shop
     <!-- Start Contact -->
     <div class="container py-5">
         <div class="row py-5">
-            <form class="col-md-9 m-auto" method="post" role="form">
+            <form class="col-md-9 m-auto" method="POST" action="{{ route('penawaran.store') }}" role="form">
+                @csrf
+                <div class="row">
+                    <h3>Dapatkan Penawaran</h3>
+                </div>
+                @if (session()->has('status'))
+                <div class="row">
+                    <div class="alert alert-primary" role="alert">
+                        {{ session()->get("status") }}
+                    </div>
+                </div>
+                @endif
+                @if (session()->has('danger'))
+                <div class="row">
+                    <div class="alert alert-danger" role="alert">
+                        {{ session()->get("status") }}
+                    </div>
+                </div>
+                @endif
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">
                         <label for="inputname">Name</label>
@@ -136,6 +157,11 @@ https://templatemo.com/tm-559-zay-shop
                         <label for="inputemail">Email</label>
                         <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email">
                     </div>
+                    
+                </div>
+                <div class="mb-3">
+                    <label for="inputsubject">Telp</label>
+                    <input type="text" class="form-control mt-1" id="subject" name="telp" placeholder="Telp">
                 </div>
                 <div class="mb-3">
                     <label for="inputsubject">Subject</label>
@@ -147,7 +173,7 @@ https://templatemo.com/tm-559-zay-shop
                 </div>
                 <div class="row">
                     <div class="col text-end mt-2">
-                        <button type="submit" class="btn btn-success btn-lg px-3">Kirim Penawaran</button>
+                        <button type="submit" class="btn btn-success btn-lg px-3">Kirim</button>
                     </div>
                 </div>
             </form>
@@ -250,6 +276,26 @@ https://templatemo.com/tm-559-zay-shop
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/templatemo.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    @if (session()->has('danger'))
+        <script>
+            $(document).Toasts('create', {
+                class: 'bg-danger',
+                title: 'Info',
+                subtitle: '',
+                body: '{{ session()->get("danger") }}'
+            })
+        </script>
+    @endif
+    @if (session()->has('status'))
+    <script>
+        $(document).Toasts('create', {
+            class: 'bg-info',
+            title: 'Info',
+            subtitle: '',
+            body: '{{ session()->get("status") }}'
+        })
+    </script>
+@endif
     <!-- End Script -->
 </body>
 

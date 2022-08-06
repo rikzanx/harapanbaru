@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <title>CV Tunggal Jaya - Product Detail Page</title>
+    <title>{{ $company->name }} - Product Detail Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="{{ asset('img/apple-icon-2.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon-2.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset($company->image_company) }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset($company->image_company) }}">
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/templatemo.css') }}">
@@ -65,7 +65,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="{{ route('about') }}">Tentang kami</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('product') }}">Produk</a>
+                            <a class="nav-link active" href="{{ route('product') }}">Produk</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact') }}">Kontak</a>

@@ -68,6 +68,14 @@
                     <label for="exampleInputEmail1">Email Perusahaan</label>
                     <input type="email" name="email" value="{{ $company->email }}" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama: Gate valve">
                   </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Latitude</label>
+                    <input type="text" name="lat" value="{{ $company->lat }}" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama: Gate valve">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Longitude</label>
+                    <input type="text" name="lng" value="{{ $company->lng }}" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama: Gate valve">
+                  </div>
                 </div>
                 <!-- /.card-body -->
 
