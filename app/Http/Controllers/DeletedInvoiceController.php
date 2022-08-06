@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Invoice;
-use App\Models\Item;
 use App\Models\DeletedInvoice;
 use App\Models\DeletedItem;
 use App\Models\Company;
@@ -13,7 +11,7 @@ use session;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class InvoiceController extends Controller
+class DeletedInvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,8 +20,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::with('items')->get();
-        return view('admin.invoice',[
+        $invoices = DeletedInvoice::with('items')->get();
+        return view('admin.deletedinvoice',[
             'invoices' => $invoices,
         ]);
     }
@@ -36,7 +34,7 @@ class InvoiceController extends Controller
     public function create()
     {
         
-        return view('admin.invoice-create');
+        return view('admin.deletedinvoice-create');
     }
 
     /**
@@ -68,7 +66,7 @@ class InvoiceController extends Controller
             $invoice = new Invoice();
             $now = Carbon::parse($request->duedate);
             // dd($now->startOfMonth()->toDateTimeString());
-            $latestInvoice = Invoice::where('created_at','>=',$now->startOfMonth()->toDateTimeString())->where('created_at','<=',$now->endOfMonth()->toDateTimeString())->orderBy('id','DESC')->first();
+            $latestInvoice = DeletedInvoice::where('created_at','>=',$now->startOfMonth()->toDateTimeString())->where('created_at','<=',$now->endOfMonth()->toDateTimeString())->orderBy('id','DESC')->first();
             if($latestInvoice === null){
                 $invoice->no_invoice = $now->year."/INV/".$now->isoformat('MM')."/0001";
             }else{
@@ -114,24 +112,24 @@ class InvoiceController extends Controller
      */
     public function show($id)
     {
-        $invoice = Invoice::with('items')->where('id',$id)->firstOrFail();
+        $invoice = DeletedInvoice::with('items')->where('id',$id)->firstOrFail();
         $company = Company::first();
         // dd($invoice);
-        return view('admin.invoice-show',[
+        return view('admin.deletedinvoice-show',[
             'invoice' => $invoice,
-        'date_inv' => Carbon::createFromFormat('Y-m-d', $invoice->duedate)->format('Y-m-d'),
+        'date_inv' => Carbon::createFromFormat('Y-m-d H:i:s', $invoice->created_at)->format('Y-m-d'),
             'company' => $company,
         ]);
     }
 
     public function show_proform($id)
     {
-        $invoice = Invoice::with('items')->where('id',$id)->firstOrFail();
+        $invoice = DeletedInvoice::with('items')->where('id',$id)->firstOrFail();
         $company = Company::first();
         // dd($invoice);
-        return view('admin.invoice-show-proform',[
+        return view('admin.deletedinvoice-show-proform',[
             'invoice' => $invoice,
-        'date_inv' => Carbon::createFromFormat('Y-m-d', $invoice->duedate)->addDays(7)->format('Y-m-d'),
+        'date_inv' => Carbon::createFromFormat('Y-m-d H:i:s', $invoice->created_at)->format('Y-m-d'),
             'company' => $company,
         ]);
     }
@@ -144,8 +142,8 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        $invoice = Invoice::with('items')->where('id',$id)->firstOrFail();
-        return view('admin.invoice-edit',[
+        $invoice = DeletedInvoice::with('items')->where('id',$id)->firstOrFail();
+        return view('admin.deletedinvoice-edit',[
             "invoice" => $invoice
         ]);
     }
@@ -177,14 +175,14 @@ class InvoiceController extends Controller
         // dd($request->comment);
 
         // foreach($invoices as $a){
-        //     Item::where('invoice_id', $a->id)
+        //     DeletedItem::where('invoice_id', $a->id)
         //     ->update([
         //         'duedate' => $a->duedate
         //         ]);
         // }
         DB::beginTransaction();
         try {
-            $invoice = Invoice::findOrFail($id);
+            $invoice = DeletedInvoice::findOrFail($id);
             $invoice->name_customer = $request->name_customer;
             $invoice->duedate = $request->duedate;
             $invoice->address_customer = $request->address_customer;
@@ -196,7 +194,7 @@ class InvoiceController extends Controller
                 $invoice->comment = $request->comment;
             }
             $invoice->save();
-            $delete = Item::where('invoice_id',$id)->delete();
+            $delete = DeletedItem::where('invoice_id',$id)->delete();
             for($i=0;$i<count($request->description);$i++){
                 $item = new Item();
                 $item->duedate = $request->duedate;
@@ -227,33 +225,8 @@ class InvoiceController extends Controller
     {
         DB::beginTransaction();
         try{
-            $invoice = Invoice::where('id',$id)->first();
-            $deleted_invoice = new DeletedInvoice();
-            $deleted_invoice->id_inv = $invoice->id_inv;
-            $deleted_invoice->no_invoice = $invoice->no_invoice;
-            $deleted_invoice->duedate = $invoice->duedate;
-            $deleted_invoice->name_customer = $invoice->name_customer;
-            $deleted_invoice->address_customer = $invoice->address_customer;
-            $deleted_invoice->phone_customer = $invoice->phone_customer;
-            $deleted_invoice->diskon_rate = $invoice->diskon_rate;
-            $deleted_invoice->tax_rate = $invoice->tax_rate;
-            $deleted_invoice->profit = $invoice->profit;
-            $deleted_invoice->comment = $invoice->comment;
-            $deleted_invoice->save();
-
-            $items = Item::where('invoice_id','=',$id)->get();
-            foreach($items as $item){
-                $deleted_item = new DeletedItem();
-                $deleted_item->duedate = $item->duedate;
-                $deleted_item->invoice_id = $deletedinvoice->id;
-                $deleted_item->item_of = "pcs";
-                $deleted_item->description = $item->description;
-                $deleted_item->qty = $item->qty;
-                $deleted_item->item_price = $item->item_price;
-                $deleted_item->save();
-            }
-            Invoice::destroy($id);
-            Item::where("invoice_id",'=',$id)->delete();
+            DeletedInvoice::destroy($id);
+            DeletedItem::where("invoice_id",'=',$id)->delete();
             DB::commit();
             return redirect("admin/invoice")->with('status', "Sukses menghapus invoice");
         }catch(\Exception $e){

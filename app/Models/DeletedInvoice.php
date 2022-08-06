@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Invoice extends Model
+class DeletedInvoice extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id';
@@ -26,6 +26,6 @@ class Invoice extends Model
     ];
 
     public function items(){
-        return $this->hasMany('App\Models\Item','invoice_id');
+        return $this->hasMany('App\Models\DeletedItem','invoice_id');
     }
 }

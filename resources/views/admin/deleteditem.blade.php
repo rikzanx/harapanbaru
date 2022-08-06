@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Invoice</h1>
+            <h1>Deleted Items</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -27,7 +27,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <a href="{{ route('invoice.create') }}" class="btn btn-success"><span class="fas fa-plus"></span> tambah invoice</a>
+                {{-- <a href="{{ route('invoice.create') }}" class="btn btn-success"><span class="fas fa-plus"></span> tambah invoice</a> --}}
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -36,25 +36,22 @@
                   <tr>
                     <th>No</th>
                     <th>No Invoice</th>
-                    <th>Name Customer</th>
-                    <th>Tanggal</th>
+                    <th>Description</th>
+                    <th>Jumlah</th>
+                    <th>Harga</th>
                     <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach ($invoices as $item)
+                    @foreach ($items as $item)
                     <tr>
                         <td>{{ $loop->index+1 }}</td>
-                        <td>{{ $item->no_invoice }}</td>
-                        <td>{{ $item->name_customer }}</td>
-                        <td>{{ $item->duedate }}</td>
+                        <td>{{ $item->invoice->no_invoice }}</td>
+                        <td>{{ $item->description }}</td>
+                        <td>{{ $item->qty }}</td>
+                        <td>{{ $item->item_price }}</td>
                         <td>
-                            <a class="btn btn-success" href="{{ route('invoice.show',$item->id) }}" target="_blank"><span class="fas fa-eye"></span></a>
-                            {{-- <a class="btn btn-warning" href="{{ route('show_proform',$item->id) }}" target="_blank"><span class="fas fa-eye"></span></a> --}}
-                            <a class="btn btn-primary" href="{{ route('invoice.edit',$item->id) }}"><span class="fas fa-edit"></span></a>
-                            <button class="btn btn-danger" onclick="modaldelete({{ $item->id }})"><span class="fas fa-trash"></span></button>
-                            {{-- <a class="btn btn-primary" href="{{ route('produk.edit',$item->id) }}"><span class="fas fa-edit"></span></a>
-                            <button class="btn btn-danger" onclick="modaldelete({{ $item->id }})"><span class="fas fa-trash"></span></button> --}}
+                            <a class="btn btn-success" href="{{ route('deletedinvoice.show',$item->invoice->id) }}" target="_blank"><span class="fas fa-eye"></span></a>
                         </td>
                     </tr>
                     @endforeach
@@ -62,10 +59,11 @@
                   <tfoot>
                     <tr>
                       <th>No</th>
-                    <th>No Invoice</th>
-                    <th>Name Customer</th>
-                    <th>Tanggal</th>
-                    <th>Aksi</th>
+                      <th>No Invoice</th>
+                      <th>Description</th>
+                      <th>Jumlah</th>
+                      <th>Harga</th>
+                      <th>Aksi</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -96,7 +94,7 @@
         <div class="modal-body">
           <p>Apakah anda yakin akan menghapus data ini&hellip;</p>
         </div>
-        <form action="{{ route('invoice.destroy', ':id') }}" method="POST" class="delete-form">
+        <form action="{{ route('produk.destroy', ':id') }}" method="POST" class="delete-form">
             @csrf
             @method('DELETE')
             <div class="modal-footer justify-content-between">

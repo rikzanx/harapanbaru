@@ -50,7 +50,7 @@
         <div class="col-5">
           <h1 class="document-type display-6">PRO FORMA INVOICE</h1>
           <p class="text-end"><strong>No: {{ $invoice->no_invoice }}</strong>
-          <br><strong>Due Date: {{ $date_inv }}</strong></p>
+          <br><strong>Date: {{ $date_inv }}</strong></p>
         </div>
       </div>
       <div class="row">

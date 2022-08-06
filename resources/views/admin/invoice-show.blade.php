@@ -49,7 +49,11 @@
         </div>
         <div class="col-5">
           <h1 class="document-type display-4">INVOICE</h1>
-          <p class="text-end"><strong>No: {{ $invoice->no_invoice }}</strong></p>
+          <p class="text-end">
+            <strong>No: {{ $invoice->no_invoice }}</strong>
+            <br>
+            <strong>Date: {{ $date_inv }}</strong>
+          </p>
         </div>
       </div>
       <div class="row">
