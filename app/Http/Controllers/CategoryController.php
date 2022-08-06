@@ -51,7 +51,7 @@ class CategoryController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect("admin/kategori")->with('status', $validator->errors()->first());
+            return redirect()->("kategori.index")->with('status', $validator->errors()->first());
         }
         // dd($request->all());
         $uploadFolder = "img/category/";
@@ -65,9 +65,9 @@ class CategoryController extends Controller
             'image_category' => $image_link
         ]);
         if($category){
-            return redirect("admin/kategori")->with('status', "Sukses menambhakan kategori");
+            return redirect()->("kategori.index")->with('status', "Sukses menambhakan kategori");
         }else{
-            return redirect("admin/kategori")->with('status', "Terjadi Kesalahan saat menambahkan kategori.");
+            return redirect()->("kategori.index")->with('status', "Terjadi Kesalahan saat menambahkan kategori.");
         }
     }
 
@@ -112,7 +112,7 @@ class CategoryController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect("admin/kategori")->with('status', $validator->errors()->first());
+            return redirect()->("kategori.index")->with('status', $validator->errors()->first());
         }
         $category = Category::findOrFail($id);
         $category->name = $request->name;
@@ -126,9 +126,9 @@ class CategoryController extends Controller
         }
         
         if($category->save()){
-            return redirect("admin/kategori")->with('status', "Sukses merubah kategori");
+            return redirect()->("kategori.index")->with('status', "Sukses merubah kategori");
         }else {
-            return redirect("admin/kategori")->with('status', "Terjadi Kesalahan");
+            return redirect()->("kategori.index")->with('status', "Terjadi Kesalahan");
         }
     }
 
@@ -141,9 +141,9 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         if(Category::destroy($id)){
-            return redirect("admin/kategori")->with('status', "Sukses menghapus kategori");
+            return redirect()->("kategori.index")->with('status', "Sukses menghapus kategori");
         }else {
-            return redirect("admin/kategori")->with('status', "Terjadi Kesalahan");
+            return redirect()->("kategori.index")->with('status', "Terjadi Kesalahan");
         }
     }
 }

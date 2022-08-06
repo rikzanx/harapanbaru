@@ -88,7 +88,7 @@ class CompanyController extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect("admin/kategori")->with('status', $validator->errors()->first());
+            return redirect()->("kategori.index")->with('status', $validator->errors()->first());
         }
         $company = Company::findOrFail($id);
         $company->name = $request->name;
