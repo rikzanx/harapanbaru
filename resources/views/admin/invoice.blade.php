@@ -44,7 +44,7 @@
                   <tbody>
                     @foreach ($invoices as $item)
                     <tr>
-                        <td>{{ $loop->index+1 }}</td>
+                        <td>{{ $item->id_inv }}</td>
                         <td>{{ $item->no_invoice }}</td>
                         <td>{{ $item->name_customer }}</td>
                         <td>{{ $item->duedate }}</td>
