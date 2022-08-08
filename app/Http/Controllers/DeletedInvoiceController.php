@@ -20,7 +20,7 @@ class DeletedInvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = DeletedInvoice::with('items')->get();
+        $invoices = DeletedInvoice::with('items')->orderBy('id', 'DESC')->get();
         return view('admin.deletedinvoice',[
             'invoices' => $invoices,
         ]);
