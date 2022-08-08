@@ -119,6 +119,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('penawaran.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Penawaran
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('password.index') }}" class="nav-link">
               <i class="nav-icon fas fa-key"></i>
               <p>
