@@ -22,7 +22,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::with('items')->orderBy('id', 'DESC')->get();
+        $invoices = Invoice::with('items')->get();
         return view('admin.invoice',[
             'invoices' => $invoices,
         ]);
