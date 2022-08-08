@@ -246,7 +246,7 @@ class InvoiceController extends Controller
             foreach($items as $item){
                 $deleted_item = new DeletedItem();
                 $deleted_item->duedate = $item->duedate;
-                $deleted_item->invoice_id = $deletedinvoice->id;
+                $deleted_item->invoice_id = $deleted_invoice->id;
                 $deleted_item->item_of = "pcs";
                 $deleted_item->description = $item->description;
                 $deleted_item->qty = $item->qty;
