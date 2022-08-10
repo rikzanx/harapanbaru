@@ -18,7 +18,7 @@
     }
     
     .logo {
-      width: 2.5cm;
+      height: 2.5cm;
     }
     
     .document-type {
@@ -40,7 +40,7 @@
     <div class="invoice">
       <div class="row">
         <div class="col-7">
-          <img src="{{ asset($company->image_company) }}" class="logo">
+          <img src="{{ asset($company->image_company) }}" class="img-fluid logo">
           <p>
             <strong>{{ $company->name }}</strong><br>
             {{$company->address}}<br>
