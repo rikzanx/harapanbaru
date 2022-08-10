@@ -72,15 +72,31 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('perusahaan.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-building"></i>
               <p>
                 Profil Perusahaan
               </p>
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('wallet.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-wallet"></i>
+              <p>
+                Wallets
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('transaction.create') }}" class="nav-link">
+              <i class="nav-icon fas fa-plus"></i>
+              <p>
+                Tambah transaksi
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('slider.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-images"></i>
               <p>
                 Gambar Slider
               </p>
@@ -88,7 +104,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('kategori.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-list"></i>
               <p>
                 Kategori
               </p>
@@ -96,7 +112,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('produk.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-box"></i>
               <p>
                 Produk
               </p>
@@ -104,7 +120,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('invoice.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 Invoice
               </p>
@@ -112,7 +128,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('item.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-box-open"></i>
               <p>
                 Barang Terjual
               </p>
@@ -120,7 +136,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('penawaran.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-envelope-open"></i>
               <p>
                 Penawaran
               </p>

@@ -65,7 +65,7 @@ class CategoryController extends Controller
             'image_category' => $image_link
         ]);
         if($category){
-            return redirect()->route("kategori.index")->with('status', "Sukses menambhakan kategori");
+            return redirect()->route("kategori.index")->with('status', "Sukses menambahkan kategori");
         }else{
             return redirect()->route("kategori.index")->with('danger', "Terjadi Kesalahan saat menambahkan kategori.");
         }

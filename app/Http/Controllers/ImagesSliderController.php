@@ -63,7 +63,7 @@ class ImagesSliderController extends Controller
             'image_slider' => $image_link
         ]);
         if($slider){
-            return redirect()->route("slider.index")->with('status', "Sukses menambhakan slider");
+            return redirect()->route("slider.index")->with('status', "Sukses menambahkan slider");
         }else{
             return redirect()->route("slider.index")->with('danger', "Terjadi Kesalahan saat menambahkan kategori.");
         }

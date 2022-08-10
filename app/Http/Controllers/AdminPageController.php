@@ -29,18 +29,6 @@ class AdminPageController extends Controller
         $end= $now->endOfMonth()->format("Y-m-d");
         $invoicesMonth = Invoice::where('duedate',">=",$start)->where('duedate',"<=",$end)->get();
         $itemsMonth = Item::where('duedate',">=",$start)->where('duedate',"<=",$end)->get();
-        // $startMonth = Carbon::now()
-        $arrayOmset = array();
-        $arrayProfit = array();
-        // for($i=1;$i<=12;$i++){
-        //     $date = Carbon::createFromDate($now->format("Y"), $i, 1);
-        //     $start= $date->startOfMonth()->format("Y-m-d");
-        //     $end= $date->endOfMonth()->format("Y-m-d");
-        //     $invoiceMonth = Invoice::where('duedate',">=",$start)->where('duedate',"<=",$end)->get();
-        //     array_push($arrayProfit,$invoiceMonth->sum("profit"));
-        //     $itemMonth = Item::where('duedate',">=",$start)->where('duedate',"<=",$end)->get();
-        //     array_push($arrayOmset,$itemMonth->sum("total"));
-        // }
         return view('admin.dashboard',[
             'categories' => $categories,
             'images_slider' => $images_slider,
@@ -49,8 +37,6 @@ class AdminPageController extends Controller
             "items" => $items,
             "invoicesMonth" => $invoicesMonth,
             "itemsMonth" => $itemsMonth,
-            "arrayProfit" => $arrayProfit,
-            "arrayOmset" => $arrayOmset,
         ]);
     }
 }

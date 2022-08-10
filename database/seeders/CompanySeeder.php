@@ -14,12 +14,14 @@ class CompanySeeder extends Seeder
     public function run()
     {
         \App\Models\Company::create([
-                'name'    => "CV Tunggal Jaya",
+                'name'    => "UD Harapan Baru",
                 'about'    => "Kami adalah perusahaan yang bergerak di bidang valve, fitting. Melayani pemesanan valve dan jasa service / reparasi, pemasangan, instalasi pipa hydrant.",
-                'address' => "jl. Margodadi 2-89, Kota Surabaya, Jawa Timur",
-                'telp' => "+628125982217",
-                'email' => "tunggaljaya5902@gmail.com",
+                'address' => "Jl, Songoyudan I No.27D, Kota SBY, Jawa Timur 60162",
+                'telp' => "+6285101440330",
+                'email' => "udharapan.teknik@gmail.com",
                 'image_company' => "img/imagecompany.jpg",
+                'lat' => "-7.2367248",
+                'lng' => "112.7422357"
         ]);
     }
 }

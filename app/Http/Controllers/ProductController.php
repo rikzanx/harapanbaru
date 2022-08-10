@@ -96,7 +96,7 @@ class ProductController extends Controller
             }
             //commit
             DB::commit();
-            return redirect()->route("produk.index")->with('status', "Sukses menambhakan produk");
+            return redirect()->route("produk.index")->with('status', "Sukses menambahkan produk");
         } catch (\Exception $e) {
             DB::rollback();
             $ea = "Terjadi Kesalahan saat menambahkan kategori".$e->message;

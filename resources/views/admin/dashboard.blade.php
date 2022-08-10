@@ -38,7 +38,7 @@
                 <p>Jumlah Produk</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="nav-icon fas fa-box"></i>
               </div>
               <a href="{{ route('produk.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -52,7 +52,7 @@
                 <p>Kategori Product</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="nav-icon fas fa-list"></i>
               </div>
               <a href="{{ route('kategori.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -66,7 +66,7 @@
                 <p>Foto Slider</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="nav-icon fas fa-images"></i>
               </div>
               <a href="{{ route('slider.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -85,7 +85,7 @@
                     <p>Orderan</p>
                   </div>
                   <div class="icon">
-                    <i class="ion ion-cart"></i>
+                    <i class="nav-icon fas fa-file-alt"></i>
                   </div>
                   <a href="{{ route('invoice.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -98,7 +98,7 @@
                     <p>Laba bersih total (profit)</p>
                   </div>
                   <div class="icon">
-                    <i class="ion ion-cart"></i>
+                    <i class="nav-icon fas fa-money-bill"></i>
                   </div>
                   <a href="{{ route('invoice.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -111,7 +111,7 @@
                     <p>Omset</p>
                   </div>
                   <div class="icon">
-                    <i class="ion ion-cash"></i>
+                    <i class="nav-icon fas fa-file-invoice-dollar"></i>
                   </div>
                   <a href="{{ route('invoice.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -124,7 +124,7 @@
                     <p>Barang Terjual</p>
                   </div>
                   <div class="icon">
-                    <i class="ion ion-briefcase"></i>
+                    <i class="nav-icon fas fa-box-open"></i>
                   </div>
                   <a href="{{ route('item.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -145,7 +145,7 @@
                     <p>Orderan</p>
                   </div>
                   <div class="icon">
-                    <i class="ion ion-cart"></i>
+                    <i class="nav-icon fas fa-file-alt"></i>
                   </div>
                   <a href="{{ route('invoice.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -158,7 +158,7 @@
                     <p>Laba bersih total (profit)</p>
                   </div>
                   <div class="icon">
-                    <i class="ion ion-cart"></i>
+                    <i class="nav-icon fas fa-money-bill"></i>
                   </div>
                   <a href="{{ route('invoice.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -171,7 +171,7 @@
                     <p>Omset</p>
                   </div>
                   <div class="icon">
-                    <i class="ion ion-cash"></i>
+                    <i class="nav-icon fas fa-file-invoice-dollar"></i>
                   </div>
                   <a href="{{ route('invoice.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -184,7 +184,7 @@
                     <p>Barang Terjual</p>
                   </div>
                   <div class="icon">
-                    <i class="ion ion-briefcase"></i>
+                    <i class="nav-icon fas fa-box-open"></i>
                   </div>
                   <a href="{{ route('item.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
