@@ -50,28 +50,27 @@ https://templatemo.com/tm-559-zay-shop
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand text-success logo h2 align-self-center" href="{{ route('index') }}">
-                {{ $company->name }}
+                {{-- {{ $company->name }} --}}
+                <img src="{{ asset($company->image_company) }}" alt="" class="img-fluid icon-nvbar">
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
-                <div class="flex-fill">
-                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('index') }}">Beranda</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('about') }}">Tentang kami</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('product') }}">Produk</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">Kontak</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-end" id="templatemo_main_nav">
+                <ul class="nav navbar-nav d-flex justify-content-between">
+                    <li class="nav-item m-lg-3">
+                        <a class="nav-link" href="{{ route('index') }}">Beranda</a>
+                    </li>
+                    <li class="nav-item m-lg-3">
+                        <a class="nav-link" href="{{ route('about') }}">About</a>
+                    </li>
+                    <li class="nav-item m-lg-3">
+                        <a class="nav-link active" href="{{ route('product') }}">Produk</a>
+                    </li>
+                    <li class="nav-item m-lg-3">
+                        <a class="nav-link" href="{{ route('contact') }}">Kontak</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -286,7 +285,7 @@ https://templatemo.com/tm-559-zay-shop
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Informasi</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li><a class="text-decoration-none" href="{{ route('index') }}">Beranda</a></li>
-                        <li><a class="text-decoration-none" href="{{ route('about') }}">Tentang Kami</a></li>
+                        <li><a class="text-decoration-none" href="{{ route('about') }}">About</a></li>
                         <li><a class="text-decoration-none" href="{{ route('contact') }}">Contact</a></li>
                     </ul>
                 </div>

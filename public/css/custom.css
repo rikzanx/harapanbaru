@@ -1,6 +1,24 @@
 /*
 Custom Css
 */
+#template-mo-zay-hero-carousel {
+    background-color:
+    #106bc7 !important;
+}
+#template-mo-zay-hero-carousel .carousel-control-next i, #template-mo-zay-hero-carousel .carousel-control-prev i{
+    color: white !important;
+}
+#template-mo-zay-hero-carousel .carousel-indicators li{
+    background-color: white !important;
+}
+
+.bg-success{
+    background-color: #efefef !important;
+}
+
+.icon-nvbar{
+    width: 60px;
+}
 
 .nav-link.active{
     color: #106bc7 !important;
