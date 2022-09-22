@@ -15,7 +15,17 @@ class PageController extends Controller
     //
     public function welcome(){
         $company = Company::first();
+        $company->{$company->name} ="oke";
+        // $company->only("name");
         $sliders = ImagesSlider::all();
+        $sliders = $sliders->map(function($query){
+            $name="baru";
+            $query->{$name} = $query->image_slider;
+            return $query->only('image_slider',$name);
+        });
+        dd(json_encode($sliders));
+        // $sliders->makeHidden(['id']);
+        // dd(json_encode($sliders));
         $categories = Category::all();
         return view('index',[
             'company'=> $company,
