@@ -118,6 +118,14 @@
               <td><strong>Total</strong></td>
               <td class="text-right">@rupiah($subtotal-($subtotal*$invoice->diskon_rate))</td>
             </tr>
+            <tr>
+              <td>Dibayar</td>
+              <td class="text-right">@rupiah($invoice->bayar)</td>
+            </tr>
+            <tr>
+              <td>Sisa</td>
+              <td class="text-right">@rupiah(($subtotal-($subtotal*$invoice->diskon_rate))-$invoice->bayar)</td>
+            </tr>
           </table>
         </div>
       </div>

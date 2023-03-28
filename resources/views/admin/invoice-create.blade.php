@@ -94,6 +94,10 @@
                     <label for="exampleInputEmail1">Profit</label>
                     <input type="number" value="0" name="profit" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
                   </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Bayar</label>
+                    <input type="number" value="0" name="bayar" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
+                  </div>
                 </div>
                 <!-- /.card-body -->
 

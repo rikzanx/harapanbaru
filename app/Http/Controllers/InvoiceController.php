@@ -56,7 +56,8 @@ class InvoiceController extends Controller
             'item_price' => 'required',
             'diskon_rate' => 'required',
             'tax_rate' => 'required',
-            'profit' => 'required'
+            'profit' => 'required',
+            'bayar' => 'required'
         ]);
         
         if ($validator->fails()) {
@@ -84,6 +85,7 @@ class InvoiceController extends Controller
             $invoice->diskon_rate = $request->diskon_rate;
             $invoice->tax_rate = $request->tax_rate;
             $invoice->profit = $request->profit;
+            $invoice->bayar = $request->bayar;
             if($request->has('comment')){
                 $invoice->comment = $request->comment;
             }
@@ -183,7 +185,8 @@ class InvoiceController extends Controller
             'item_price' => 'required',
             'diskon_rate' => 'required',
             'tax_rate' => 'required',
-            'profit' => 'required'
+            'profit' => 'required',
+            'bayar' => 'required',
         ]);
         
         if ($validator->fails()) {
@@ -208,6 +211,7 @@ class InvoiceController extends Controller
             $invoice->diskon_rate = $request->diskon_rate;
             $invoice->tax_rate = $request->tax_rate;
             $invoice->profit = $request->profit;
+            $invoice->bayar = $request->bayar;
             if($request->has('comment')){
                 $invoice->comment = $request->comment;
             }
@@ -254,6 +258,7 @@ class InvoiceController extends Controller
             $deleted_invoice->diskon_rate = $invoice->diskon_rate;
             $deleted_invoice->tax_rate = $invoice->tax_rate;
             $deleted_invoice->profit = $invoice->profit;
+            $deleted_invoice->bayar = $invoice->bayar;
             $deleted_invoice->comment = $invoice->comment;
             $deleted_invoice->save();
 

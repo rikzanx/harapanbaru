@@ -22,6 +22,8 @@ class Invoice extends Model
             "diskon_rate",
             "tax_rate",
             "profit",
+            "tanggal_pengiriman",
+            "bayar",
             "created_at"
     ];
 
