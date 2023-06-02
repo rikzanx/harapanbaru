@@ -63,6 +63,7 @@
           </p>
         </div>
       </div>
+      <hr>
       <div class="row">
         <div class="col-7">
           <p>
@@ -81,8 +82,6 @@
           </p>
         </div> --}}
       </div>
-      <br>
-      {{-- <h6>Audits et rapports mensuels (1er Novembre 2016 - 30 Novembre 2016)</h6> --}}
       <br>
       <table class="table table-striped">
         <thead>
@@ -158,7 +157,6 @@
         </div>
       </div>
       
-      <br>
       <br>
       <br>
       <br>
