@@ -28,20 +28,16 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Create Invoice</h3>
+                <h3 class="card-title">Create Surat Penawaran</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="POST" action="{{ route('invoice.store') }}" enctype="multipart/form-data">
+              <form method="POST" action="{{ route('surat-penawaran.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Tanggal</label>
                   <input type="date" name="duedate" class="form-control" id="exampleInputEmail1" value="{{ \Carbon\Carbon::now()->format("Y-m-d") }}">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Tanggal Pengiriman</label>
-                  <input type="date" name="tangal_pengiriman" class="form-control" id="exampleInputEmail1" value="{{ \Carbon\Carbon::now()->format("Y-m-d") }}">
                 </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Customer</label>
@@ -83,22 +79,6 @@
                     </div>
                   </div>
                   <br>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Diskon (%)</label>
-                    <input type="number" value="0" name="diskon_rate" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Pajak (%)</label>
-                    <input type="number" value="0" name="tax_rate" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Profit</label>
-                    <input type="number" value="0" name="profit" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Bayar</label>
-                    <input type="number" value="0" name="bayar" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
-                  </div>
                 </div>
                 <!-- /.card-body -->
 

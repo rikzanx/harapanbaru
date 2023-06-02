@@ -78,22 +78,22 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ route('wallet.index') }}" class="nav-link">
               <i class="nav-icon fas fa-wallet"></i>
               <p>
                 Wallets
               </p>
             </a>
-          </li>
-          <li class="nav-item">
+          </li> --}}
+          {{-- <li class="nav-item">
             <a href="{{ route('transaction.create') }}" class="nav-link">
               <i class="nav-icon fas fa-plus"></i>
               <p>
                 Tambah transaksi
               </p>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a href="{{ route('slider.index') }}" class="nav-link">
               <i class="nav-icon fas fa-images"></i>
@@ -123,6 +123,14 @@
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 Invoice
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('surat-penawaran.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Surat Penawaran
               </p>
             </a>
           </li>

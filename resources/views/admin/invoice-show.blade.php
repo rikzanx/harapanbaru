@@ -1,4 +1,5 @@
 <head>
+  <title>Invoice {{$invoice->no_invoice}} {{$company->name}}</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <style>
         body {
@@ -33,6 +34,12 @@
     
     .bottom-page {
       font-size: 0.7em;
+    }
+    hr{
+      background-color: black !important;
+      color: black !important;  
+      opacity: 1;
+      border-top: 1px solid black !important;
     }
     </style>
 </head>
@@ -92,7 +99,7 @@
           @foreach($invoice->items as $item)
             <tr>
                 <td>{{ $loop->index+1 }}</td>
-                <td>{{ $item->description }}</td>
+                <td>{!! nl2br($item->description) !!}</td>
                 <td>{{ $item->qty }}</td>
                 <td class="text-right">@rupiah($item->item_price)</td>
                 <td class="text-right">@rupiah($item->item_price * $item->qty)</td>
@@ -132,8 +139,24 @@
       
       <p class="conditions">
         <strong>Catatan Tambahan :</strong><br>
-        {{ $invoice->comment }}
+        {!! nl2br($invoice->comment) !!}
       </p>
+      <br>
+      <div class="row my-4">
+        <div class="col text-center">
+        </div>
+        <div class="col-6">
+        </div>
+        <div class="col text-center">
+          Hormat kami,
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <b>{{ $company->name }}</b>
+        </div>
+      </div>
       
       <br>
       <br>

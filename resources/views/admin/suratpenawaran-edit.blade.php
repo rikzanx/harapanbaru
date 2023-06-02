@@ -28,45 +28,41 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Edit Invoice</h3>
+                <h3 class="card-title">Edit Surat Penawaran</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="POST" action="{{ route('invoice.update',$invoice->id) }}" enctype="multipart/form-data">
+              <form method="POST" action="{{ route('surat-penawaran.update',$suratpenawaran->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method("PATCH")
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Tanggal</label>
-                    <input type="date" name="duedate" class="form-control" id="exampleInputEmail1" value="{{ \Carbon\Carbon::parse($invoice->duedate)->format("Y-m-d") }}">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Tanggal Pengiriman</label>
-                    <input type="date" name="tanggal_pengiriman" class="form-control" id="exampleInputEmail1" value="{{ \Carbon\Carbon::parse($invoice->tanggal_pengiriman)->format("Y-m-d") }}">
+                    <input type="date" name="duedate" class="form-control" id="exampleInputEmail1" value="{{ \Carbon\Carbon::parse($suratpenawaran->duedate)->format("Y-m-d") }}">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Customer</label>
-                    <input type="text" value="{{ $invoice->name_customer }}" name="name_customer" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
+                    <input type="text" value="{{ $suratpenawaran->name_customer }}" name="name_customer" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Address Customer</label>
-                    <input type="text" value="{{ $invoice->address_customer }}" name="address_customer" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
+                    <input type="text" value="{{ $suratpenawaran->address_customer }}" name="address_customer" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Phone Customer</label>
-                    <input type="text" value="{{ $invoice->phone_customer }}" name="phone_customer" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
+                    <input type="text" value="{{ $suratpenawaran->phone_customer }}" name="phone_customer" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Catatan tambahan</label>
-                    <textarea class="form-control" name="comment" id="" cols="30" rows="7" >{{$invoice->comment}}</textarea>
-                    {{-- <input type="text" value="{{ $invoice->comment }}" name="comment" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer"> --}}
+                    <textarea class="form-control" name="comment" id="" cols="30" rows="7" >{{$suratpenawaran->comment}}</textarea>
+                    {{-- <input type="text" value="{{ $suratpenawaran->comment }}" name="comment" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer"> --}}
                   </div>
                   
                   <div class="form-group">
                     <label for="exampleInputFile">Items</label>
                   </div>
                   <div class="input-group control-group lst increment" >
-                  @foreach($invoice->items as $item)
+                  @foreach($suratpenawaran->items as $item)
                     @if($loop->index == 0)
                     <div class="hdtuto control-group lst input-group" style="margin-top:10px">
                         <textarea name="description[]" placeholder="Nama Barang" cols="30" rows="4" class="myfrm form-control">{{$item->description}}</textarea>
@@ -89,22 +85,6 @@
                   @endforeach
                 </div>
                   <br>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Diskon (%)</label>
-                    <input type="number" value="{{ $invoice->diskon_rate }}" name="diskon_rate" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Pajak (%)</label>
-                    <input type="number" value="{{ $invoice->tax_rate }}" name="tax_rate" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Profit</label>
-                    <input type="number" value="{{ $invoice->profit }}" name="profit" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Bayar</label>
-                    <input type="number" value="{{ $invoice->bayar }}" name="bayar" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama customer">
-                  </div>
                 </div>
                 <!-- /.card-body -->
 
