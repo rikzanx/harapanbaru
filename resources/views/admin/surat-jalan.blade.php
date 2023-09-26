@@ -55,7 +55,7 @@
               <p>
                 <strong>{{ $company->name }}</strong><br>
                 {{$company->address}}<br>
-                Phone : {{ $company->telp}}
+                Telp : {{ $company->telp}}
               </p>
             </div>
           </div>
@@ -78,7 +78,7 @@
         <div class="col-6">
           <p class="text-end">
             No invoice : {{  $invoice->no_invoice}}<br>
-            Tanggal : {{  $tanggal_pengiriman}}<br>
+            Tanggal Kirim: {{  $tanggal_pengiriman}}<br>
           </p>
         </div>
       </div>
