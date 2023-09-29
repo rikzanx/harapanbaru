@@ -59,7 +59,7 @@
           <p class="text-end">
             <strong>No: {{ $invoice->no_invoice }}</strong>
             <br>
-            <strong>Date: {{ $date_inv }}</strong>
+            <strong>Tanggal: {{ $date_inv }}</strong>
           </p>
         </div>
       </div>
@@ -67,7 +67,7 @@
       <div class="row">
         <div class="col-7">
           <p>
-            <strong>Bill to</strong><br>
+            <strong>Kepada</strong><br>
             {{  $invoice->name_customer}}<br>
             {{  $invoice->address_customer}}<br>
             {{  $invoice->phone_customer}}
