@@ -60,4 +60,5 @@ Route::group(['prefix' => 'admin'],function(){
 
     Route::get('proforma/invoice/{id}',[InvoiceController::class, 'show_proform'])->name("show_proform");
     Route::get('suratjalan/invoice/{id}',[InvoiceController::class, 'surat_jalan'])->name("surat_jalan");
+    Route::get('invoice-tagihan/{id}',[InvoiceController::class,'invoice_tagihan'])->name("invoice-tagihan");
 });
