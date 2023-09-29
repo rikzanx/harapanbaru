@@ -1,156 +1,171 @@
-@extends('admin.layouts.app')
-
-@section('content')
-    <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Invoice</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Produk</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <a href="{{ route('invoice.create') }}" class="btn btn-success"><span class="fas fa-plus"></span> tambah invoice</a>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>No Invoice</th>
-                    <th>Name Customer</th>
-                    <th>Tanggal</th>
-                    <th>Aksi</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($invoices as $item)
-                    <tr>
-                        <td>{{ $loop->index+1 }}</td>
-                        <td>{{ $item->no_invoice }}</td>
-                        <td>{{ $item->name_customer }}</td>
-                        <td>{{ $item->duedate }}</td>
-                        <td>
-                            <a class="btn btn-success" href="{{ route('invoice.show',$item->id) }}" target="_blank"><span class="fas fa-eye"></span></a>
-                            <a class="btn btn-warning" href="{{ route('surat_jalan',$item->id) }}" target="_blank"><span class="fas fa-eye"></span></a>
-                            <a class="btn btn-primary" href="{{ route('invoice.edit',$item->id) }}"><span class="fas fa-edit"></span></a>
-                            <button class="btn btn-danger" onclick="modaldelete({{ $item->id }})"><span class="fas fa-trash"></span></button>
-                            {{-- <a class="btn btn-primary" href="{{ route('produk.edit',$item->id) }}"><span class="fas fa-edit"></span></a>
-                            <button class="btn btn-danger" onclick="modaldelete({{ $item->id }})"><span class="fas fa-trash"></span></button> --}}
-                        </td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <th>No</th>
-                    <th>No Invoice</th>
-                    <th>Name Customer</th>
-                    <th>Tanggal</th>
-                    <th>Aksi</th>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <!-- Modal -->
-<div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Peringatan</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Apakah anda yakin akan menghapus data ini&hellip;</p>
-        </div>
-        <form action="{{ route('invoice.destroy', ':id') }}" method="POST" class="delete-form">
-            @csrf
-            @method('DELETE')
-            <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-danger">Delete</button>
-            </div>
-        </form>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
-@endsection
-
-@section('js')
-@if (session()->has('status'))
-    <script>
-        $(document).Toasts('create', {
-            class: 'bg-info',
-            title: 'Info',
-            subtitle: '',
-            body: '{{ session()->get("status") }}'
-        })
-    </script>
-@endif
-    <!-- Page specific script -->
-<script>
-    function modaldelete(id){
-        // alert(id);
-        var url = $('.delete-form').attr('action');
-        $('.delete-form').attr('action',url.replace(':id',id));
-        $('#modal-default').modal('show');
+<head>
+  <title>Invoice {{$invoice->no_invoice}} {{$company->name}}</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <style>
+        body {
+      background: #ccc;
+      padding: 30px;
     }
-    $(function () {
-      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-        event.preventDefault();
-        $(this).ekkoLightbox({
-          alwaysShowClose: true
-        });
-      });
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
-    });
-  </script>
-@endsection
+    
+    .container {
+      width: 21cm;
+      min-height: 29.7cm;
+    }
+    
+    .invoice {
+      background: #fff;
+      width: 100%;
+      padding: 50px;
+    }
+    
+    .logo {
+      height: 2.5cm;
+    }
+    
+    .document-type {
+      text-align: right;
+      color: #444;
+    }
+    
+    .conditions {
+      font-size: 0.7em;
+      color: #666;
+    }
+    
+    .bottom-page {
+      font-size: 0.7em;
+    }
+    hr{
+      background-color: black !important;
+      color: black !important;  
+      opacity: 1;
+      border-top: 1px solid black !important;
+    }
+    </style>
+</head>
+<div class="container">
+    <div class="invoice">
+      <div class="row">
+        <div class="col-7">
+          <img src="{{ asset($company->image_company) }}" class="img-fluid logo">
+          <p>
+            <strong>{{ $company->name }}</strong><br>
+            {{$company->address}}<br>
+            Phone : {{ $company->telp}}
+          </p>
+        </div>
+        <div class="col-5">
+          <h1 class="document-type display-4">INVOICE</h1>
+          <p class="text-end">
+            <strong>No: {{ $invoice->no_invoice }}</strong>
+            <br>
+            <strong>Date: {{ $date_inv }}</strong>
+          </p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-7">
+          <p>
+            <strong>Bill to</strong><br>
+            {{  $invoice->name_customer}}<br>
+            {{  $invoice->address_customer}}<br>
+            {{  $invoice->phone_customer}}
+          </p>
+        </div>
+        {{-- <div class="col-5">
+          <p>
+            <strong>Energies54</strong><br>
+            Réf. Client <em>C00022</em><br>
+            12 Rue de Verdun<br>
+            54250 JARNY
+          </p>
+        </div> --}}
+      </div>
+      <br>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Description</th>
+            <th>Qty</th>
+            <th>Item Price</th>
+            <th>Total amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php $subtotal = 0; ?>
+          @foreach($invoice->items as $item)
+            <tr>
+                <td>{{ $loop->index+1 }}</td>
+                <td>{!! nl2br($item->description) !!}</td>
+                <td>{{ $item->qty }}</td>
+                <td class="text-right">@rupiah($item->item_price)</td>
+                <td class="text-right">@rupiah($item->item_price * $item->qty)</td>
+            </tr>
+            <?php $subtotal += $item->item_price * $item->qty; ?>
+          @endforeach
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-8">
+        </div>
+        <div class="col-4">
+          <table class="table table-sm text-right">
+            <tr>
+              <td><strong>Subtotal</strong></td>
+              <td class="text-right">@rupiah($subtotal)</td>
+            </tr>
+            <tr>
+              <td>Diskon</td>
+              <td class="text-right">@rupiah($subtotal*$invoice->diskon_rate) ({{ $invoice->diskon_rate }}%)</td>
+            </tr>
+            <tr>
+              <td><strong>Total</strong></td>
+              <td class="text-right">@rupiah($subtotal-($subtotal*$invoice->diskon_rate))</td>
+            </tr>
+            <tr>
+              <td>Dibayar</td>
+              <td class="text-right">@rupiah($invoice->bayar)</td>
+            </tr>
+            <tr>
+              <td>Sisa</td>
+              <td class="text-right">@rupiah(($subtotal-($subtotal*$invoice->diskon_rate))-$invoice->bayar)</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      
+      <p class="conditions">
+        <strong>Catatan Tambahan :</strong><br>
+        {!! nl2br($invoice->comment) !!}
+      </p>
+      <br>
+      <div class="row my-4">
+        <div class="col text-center">
+        </div>
+        <div class="col-6">
+        </div>
+        <div class="col text-center">
+          Hormat kami,
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <b>{{ $company->name }}</b>
+        </div>
+      </div>
+      
+      <br>
+      <br>
+      <br>
+      
+      {{-- <p class="bottom-page text-right">
+        90TECH SAS - N° SIRET 80897753200015 RCS METZ<br>
+        6B, Rue aux Saussaies des Dames - 57950 MONTIGNY-LES-METZ 03 55 80 42 62 - www.90tech.fr<br>
+        Code APE 6201Z - N° TVA Intracom. FR 77 808977532<br>
+        IBAN FR76 1470 7034 0031 4211 7882 825 - SWIFT CCBPFRPPMTZ
+      </p> --}}
+    </div>
+  </div>
