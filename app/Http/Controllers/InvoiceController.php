@@ -128,6 +128,18 @@ class InvoiceController extends Controller
         ]);
     }
 
+    public function invoice_tagihan($id)
+    {
+        $invoice = Invoice::with('items')->where('id',$id)->firstOrFail();
+        $company = Company::first();
+        // dd($invoice);
+        return view('admin.invoice-tagihan',[
+            'invoice' => $invoice,
+        'date_inv' => Carbon::createFromFormat('Y-m-d', $invoice->duedate)->format('Y-m-d'),
+            'company' => $company,
+        ]);
+    }
+
     public function surat_jalan($id)
     {
         $invoice = Invoice::with('items')->where('id',$id)->firstOrFail();
