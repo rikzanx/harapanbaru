@@ -67,7 +67,7 @@
       <div class="row">
         <div class="col-7">
           <p>
-            <strong>Bill to</strong><br>
+            <strong>Kepada</strong><br>
             {{  $invoice->name_customer}}<br>
             {{  $invoice->address_customer}}<br>
             {{  $invoice->phone_customer}}
@@ -123,10 +123,6 @@
             <tr>
               <td><strong>Total</strong></td>
               <td class="text-right">@rupiah($subtotal-($subtotal*$invoice->diskon_rate))</td>
-            </tr>
-            <tr>
-              <td>Dibayar</td>
-              <td class="text-right">@rupiah($invoice->bayar)</td>
             </tr>
             <tr>
               <td>Sisa</td>
