@@ -59,7 +59,7 @@
           <p class="text-end">
             <strong>No: {{ $invoice->no_invoice }}</strong>
             <br>
-            <strong>Date: {{ $date_inv }}</strong>
+            <strong>Tanggal: {{ $date_inv }}</strong>
           </p>
         </div>
       </div>
