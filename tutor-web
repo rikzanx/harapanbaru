@@ -4,3 +4,19 @@ memakai spatie kemudian harus di publish provider dulu
 
 cara ssh agara konek dengna github terminal
 https://www.petanikode.com/github-ssh/
+
+
+membuat ssh key
+cd ~/.ssh/ #pindah ke direktori ssh
+
+# membuat private key dan public key
+ssh-keygen -t rsa
+cat ~/.ssh/id_anda.pub
+eval `ssh-agent`
+ssh-add dian
+ssh -T git@github.com
+
+
+tutor xml sitemap
+https://codelapan.com/post/cara-membuat-sitemap-dinamis-di-laravel-8
+
