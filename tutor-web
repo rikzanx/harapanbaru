@@ -2,6 +2,9 @@ cara backup databse
 - https://www.positronx.io/laravel-database-backup-with-spatie-tutorial-example/
 memakai spatie kemudian harus di publish provider dulu
 
+nano config/backup.php
+php artisan backup:run --disable-notifications --only-db
+
 cara ssh agara konek dengna github terminal
 https://www.petanikode.com/github-ssh/
 
