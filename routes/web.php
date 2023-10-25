@@ -18,6 +18,7 @@ use App\Http\Controllers\PenawaranController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\SuratPenawaranController;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,14 @@ use App\Http\Controllers\SuratPenawaranController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/send-test-email', function () {
+    Mail::raw('Testing Laravel email!', function ($message) {
+        $message->to('erik.kasbam@gmail.com')->subject('Test Email');
+    });
+
+    return 'Test email sent!';
+});
 
 Route::get('/', [CustomAuthController::class, 'index'])->name('index');
 // Route::get('about',[PageController::class, 'about'])->name('about');
